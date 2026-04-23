@@ -22,3 +22,9 @@ Ejemplo:
 - `capitulo-01.svg`
 - `capitulo-02.svg`
 - `capitulo-final.svg`
+
+
+## Reproductor global
+- `global-player.js` y `global-player.css` ya están integrados.
+- La cola y el tiempo se guardan en el navegador.
+- Capítulo 1 incluye un ejemplo de pistas opcionales.

@@ -1,119 +1,546 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Итальянское настроение</title>
-  <meta name="description" content="Sitio musical offline para escuchar, leer y cantar en italiano.">
-  <link rel="stylesheet" href="css/styles.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>El misterio de los Fader</title>
+  <meta name="description" content="Sitio simple para leer la novela El misterio de los Fader capítulo por capítulo.">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="global-player.css">
 </head>
 <body>
-  <div class="bg-layer">
-    <img id="bgImage" src="assets/images/album-cover.jpg" alt="" class="bg-layer__image">
-    <div class="bg-layer__veil"></div>
-  </div>
+  <header class="site-header">
+    <div class="container nav">
+      <a class="brand" href="index.html">El misterio de los Fader</a>
+      <nav class="nav-links">
+        <a href="#capitulos">Capítulos</a>
+        <a href="#publicacion">Publicación</a>
+      </nav>
+    </div>
+  </header>
 
-  <div class="page">
-    <header class="hero glass">
-      <div class="hero__text">
-        <p class="eyebrow">universo musicale · offline · luis fader</p>
-        <h1>Итальянское настроение</h1>
-        <p class="lead">Escuchar, leer y cantar. Cada canción abre una imagen distinta y el espectro late sobre la miniatura visual del track.</p>
-      </div>
-      <div class="hero__buttons">
-        <button id="focusBtn" class="btn">Modo focus</button>
-        <button id="togglePlaylistBtn" class="btn">Playlist</button>
-      </div>
-    </header>
-
-    <main class="layout">
-      <section class="main-column">
-        <article class="now glass">
-          <div class="now__copy">
-            <p class="eyebrow">ahora suena</p>
-            <h2 id="trackTitle">Il Violoncello nella Fortezza</h2>
-            <p id="trackMood" class="mood"></p>
-            <p id="trackDescription" class="description"></p>
+  <main>
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="card"><img src="img/cover.png" alt="Portada de El misterio de los Fader"></div>
+        <div class="card hero-copy">
+          <span class="eyebrow">Versión simple para GitHub Pages</span>
+          <h1>El misterio de los Fader</h1>
+          <p class="lead">Un sitio estático, limpio y fácil de mantener. Incluye una página principal con el listado de capítulos y una página independiente para cada uno.</p>
+          <div class="meta">
+            <span class="badge">52 páginas de lectura</span>
+            <span class="badge">Compatible con GitHub Pages</span>
+            <span class="badge">Fácil de ampliar</span>
           </div>
-          <div class="meta-row">
-            <div class="meta-pill"><span>artista</span><strong id="trackArtist">Luis Fader</strong></div>
-            <div class="meta-pill"><span>track</span><strong id="trackIndexLabel">01 / 11</strong></div>
-            <div class="meta-pill"><span>estado</span><strong id="statusLabel">Listo</strong></div>
-          </div>
-        </article>
+          <p class="note">Las imágenes de cada capítulo ya tienen un archivo de marcador de posición. Puedes reemplazarlo por tu imagen real conservando el mismo nombre de archivo.</p>
 
-        <article class="lyrics glass">
-          <div class="section-head">
-            <div>
-              <p class="eyebrow">testo</p>
-              <h3>Letra de la canción</h3>
+          <section class="mini-player" aria-label="Banda sonora de la novela">
+            <h2>🎧 Banda sonora</h2>
+            <p class="mini-text">La barra global queda fija abajo. Estas pistas se añaden a la lista de reproducción.</p>
+            <div class="track-pills">
+              <button type="button" class="track-pill" data-audio-src="audio/track1.mp3" data-audio-title="Moscú bajo la nieve" data-audio-source="Portada">🌨️ Moscú</button>
+              <button type="button" class="track-pill" data-audio-src="audio/track2.mp3" data-audio-title="Encuentro en el hielo" data-audio-source="Portada">💘 Encuentro</button>
+              <button type="button" class="track-pill" data-audio-src="audio/track3.mp3" data-audio-title="Viaje a Mendoza" data-audio-source="Portada">✈️ Viaje</button>
+              <button type="button" class="track-pill" data-audio-src="audio/track4.mp3" data-audio-title="Viñedos al atardecer" data-audio-source="Portada">🍷 Viñedos</button>
             </div>
-            <button id="wideLyricsBtn" class="btn btn--small">Lectura amplia</button>
-          </div>
-          <div id="lyricsText" class="lyrics__content"></div>
-        </article>
-      </section>
+          </section>
 
-      <aside class="visual-column">
-        <article class="visual glass">
-          <div class="section-head section-head--tight">
-            <div>
-              <p class="eyebrow">miniatura visual</p>
-              <h3>Imagen del track</h3>
-            </div>
-          </div>
-          <div class="visual__frame">
-            <img id="coverImage" src="assets/images/album-cover.jpg" alt="Imagen del track actual" class="visual__img">
-            <canvas id="spectrumCanvas" class="visual__spectrum"></canvas>
-          </div>
-          <div class="visual__labels">
-            <strong id="artTitle">Il Violoncello nella Fortezza</strong>
-            <span id="artArtist">Luis Fader</span>
-          </div>
-        </article>
-      </aside>
-    </main>
-  </div>
-
-  <aside id="playlistPanel" class="playlist glass">
-    <div id="playlistHandle" class="playlist__header">
-      <div>
-        <p class="eyebrow">playlist</p>
-        <h3>11 canciones</h3>
+        </div>
       </div>
-      <button id="collapsePlaylistBtn" class="btn btn--small">Ocultar</button>
-    </div>
-    <ol id="playlistList" class="playlist__list"></ol>
-  </aside>
+    </section>
 
-  <footer class="player glass">
-    <div class="player__track">
-      <div class="led"></div>
-      <div>
-        <strong id="dockTitle">Il Violoncello nella Fortezza</strong>
-        <small id="dockArtist">Luis Fader</small>
+    <section class="section" id="capitulos">
+      <div class="container">
+        <h2>Capítulos</h2>
+        <p class="lead">Haz clic en cualquier capítulo para abrir el texto correspondiente.</p>
+        <div class="chapter-list">
+          
+      <article class="card chapter-card">
+        <div>
+          <p class="chapter-label">💘 Capítulo 1</p>
+          <h3>Un encuentro inolvidable</h3>
+          <p>Leer capítulo 1.</p>
+        </div>
+        <a class="cta" href="chapitulos/capitulo-01.html">Abrir</a>
+      </article>
+    
+      <article class="card chapter-card">
+        <div>
+          <p class="chapter-label">📞 Capítulo 2</p>
+          <h3>Buenas noticias</h3>
+          <p>Leer capítulo 2.</p>
+        </div>
+        <a class="cta" href="chapitulos/capitulo-02.html">Abrir</a>
+      </article>
+    
+      <article class="card chapter-card">
+        <div>
+          <p class="chapter-label">💼 Capítulo 3</p>
+          <h3>Un intercambio con sabor alemán</h3>
+          <p>Leer capítulo 3.</p>
+        </div>
+        <a class="cta" href="chapitulos/capitulo-03.html">Abrir</a>
+      </article>
+    
+      <article class="card chapter-card">
+        <div>
+          <p class="chapter-label">✈️ Capítulo 4</p>
+          <h3>El encuentro en Mendoza</h3>
+          <p>Leer capítulo 4.</p>
+        </div>
+        <a class="cta" href="chapitulos/capitulo-04.html">Abrir</a>
+      </article>
+    
+      <article class="card chapter-card">
+        <div>
+          <p class="chapter-label">🌳 Capítulo 5</p>
+          <h3>En el parque</h3>
+          <p>Leer capítulo 5.</p>
+        </div>
+        <a class="cta" href="chapitulos/capitulo-05.html">Abrir</a>
+      </article>
+    
+      <article class="card chapter-card">
+        <div>
+          <p class="chapter-label">👑 Capítulo 6</p>
+          <h3>La Reina Inesperada de la Vendimia</h3>
+          <p>Leer capítulo 6.</p>
+        </div>
+        <a class="cta" href="chapitulos/capitulo-06.html">Abrir</a>
+      </article>
+    
+      <article class="card chapter-card">
+        <div>
+          <p class="chapter-label">🕰️ Capítulo 7</p>
+          <h3>El pasado dando pistas</h3>
+          <p>Leer capítulo 7.</p>
+        </div>
+        <a class="cta" href="chapitulos/capitulo-07.html">Abrir</a>
+      </article>
+    
+      <article class="card chapter-card">
+        <div>
+          <p class="chapter-label">🌑 Capítulo 8</p>
+          <h3>La Plaza de las Sombras</h3>
+          <p>Leer capítulo 8.</p>
+        </div>
+        <a class="cta" href="chapitulos/capitulo-08.html">Abrir</a>
+      </article>
+    
+      <article class="card chapter-card">
+        <div>
+          <p class="chapter-label">✨ Capítulo 9</p>
+          <h3>Fama y Misterios</h3>
+          <p>Leer capítulo 9.</p>
+        </div>
+        <a class="cta" href="chapitulos/capitulo-09.html">Abrir</a>
+      </article>
+    
+      <article class="card chapter-card">
+        <div>
+          <p class="chapter-label">🍷 Capítulo 10</p>
+          <h3>La cena lujosa</h3>
+          <p>Leer capítulo 10.</p>
+        </div>
+        <a class="cta" href="chapitulos/capitulo-10.html">Abrir</a>
+      </article>
+    
+      <article class="card chapter-card">
+        <div>
+          <p class="chapter-label">🍇 Capítulo 11</p>
+          <h3>La Finca de los Sueños</h3>
+          <p>Leer capítulo 11.</p>
+        </div>
+        <a class="cta" href="chapitulos/capitulo-11.html">Abrir</a>
+      </article>
+    
+      <article class="card chapter-card">
+        <div>
+          <p class="chapter-label">👣 Capítulo 12</p>
+          <h3>El pasado que persigue</h3>
+          <p>Leer capítulo 12.</p>
+        </div>
+        <a class="cta" href="chapitulos/capitulo-12.html">Abrir</a>
+      </article>
+    
+      <article class="card chapter-card">
+        <div>
+          <p class="chapter-label">🏔️ Capítulo 13</p>
+          <h3>El Secreto de las Montañas Azules</h3>
+          <p>Leer capítulo 13.</p>
+        </div>
+        <a class="cta" href="chapitulos/capitulo-13.html">Abrir</a>
+      </article>
+    
+      <article class="card chapter-card">
+        <div>
+          <p class="chapter-label">🏘️ Capítulo 14</p>
+          <h3>El Sueño de la Comuna</h3>
+          <p>Leer capítulo 14.</p>
+        </div>
+        <a class="cta" href="chapitulos/capitulo-14.html">Abrir</a>
+      </article>
+    
+      <article class="card chapter-card">
+        <div>
+          <p class="chapter-label">🌅 Capítulo 15</p>
+          <h3>El amanecer de los secretos</h3>
+          <p>Leer capítulo 15.</p>
+        </div>
+        <a class="cta" href="chapitulos/capitulo-15.html">Abrir</a>
+      </article>
+    
+      <article class="card chapter-card">
+        <div>
+          <p class="chapter-label">☀️ Capítulo 16</p>
+          <h3>La mañana en los viñedos</h3>
+          <p>Leer capítulo 16.</p>
+        </div>
+        <a class="cta" href="chapitulos/capitulo-16.html">Abrir</a>
+      </article>
+    
+      <article class="card chapter-card">
+        <div>
+          <p class="chapter-label">📣 Capítulo 17</p>
+          <h3>La protesta en la finca Fader</h3>
+          <p>Leer capítulo 17.</p>
+        </div>
+        <a class="cta" href="chapitulos/capitulo-17.html">Abrir</a>
+      </article>
+    
+      <article class="card chapter-card">
+        <div>
+          <p class="chapter-label">🩹 Capítulo 18</p>
+          <h3>El héroe fallido</h3>
+          <p>Leer capítulo 18.</p>
+        </div>
+        <a class="cta" href="chapitulos/capitulo-18.html">Abrir</a>
+      </article>
+    
+      <article class="card chapter-card">
+        <div>
+          <p class="chapter-label">🔥 Capítulo 19</p>
+          <h3>La Ira de Karl</h3>
+          <p>Leer capítulo 19.</p>
+        </div>
+        <a class="cta" href="chapitulos/capitulo-19.html">Abrir</a>
+      </article>
+    
+      <article class="card chapter-card">
+        <div>
+          <p class="chapter-label">💎 Capítulo 20</p>
+          <h3>El Resplandor de las Uvas</h3>
+          <p>Leer capítulo 20.</p>
+        </div>
+        <a class="cta" href="chapitulos/capitulo-20.html">Abrir</a>
+      </article>
+    
+      <article class="card chapter-card">
+        <div>
+          <p class="chapter-label">🌫️ Capítulo 21</p>
+          <h3>Las sombras de Cacheuta</h3>
+          <p>Leer capítulo 21.</p>
+        </div>
+        <a class="cta" href="chapitulos/capitulo-21.html">Abrir</a>
+      </article>
+    
+      <article class="card chapter-card">
+        <div>
+          <p class="chapter-label">⚔️ Capítulo 22</p>
+          <h3>El Sueño de la Conquista</h3>
+          <p>Leer capítulo 22.</p>
+        </div>
+        <a class="cta" href="chapitulos/capitulo-22.html">Abrir</a>
+      </article>
+    
+      <article class="card chapter-card">
+        <div>
+          <p class="chapter-label">📺 Capítulo 23</p>
+          <h3>La Entrevista en Canal 9</h3>
+          <p>Leer capítulo 23.</p>
+        </div>
+        <a class="cta" href="chapitulos/capitulo-23.html">Abrir</a>
+      </article>
+    
+      <article class="card chapter-card">
+        <div>
+          <p class="chapter-label">🪖 Capítulo 24</p>
+          <h3>El Refugiado y el General</h3>
+          <p>Leer capítulo 24.</p>
+        </div>
+        <a class="cta" href="chapitulos/capitulo-24.html">Abrir</a>
+      </article>
+    
+      <article class="card chapter-card">
+        <div>
+          <p class="chapter-label">⚡ Capítulo 25</p>
+          <h3>La Revelación Interrumpida</h3>
+          <p>Leer capítulo 25.</p>
+        </div>
+        <a class="cta" href="chapitulos/capitulo-25.html">Abrir</a>
+      </article>
+    
+      <article class="card chapter-card">
+        <div>
+          <p class="chapter-label">🧬 Capítulo 26</p>
+          <h3>Otra de los Fader</h3>
+          <p>Leer capítulo 26.</p>
+        </div>
+        <a class="cta" href="chapitulos/capitulo-26.html">Abrir</a>
+      </article>
+    
+      <article class="card chapter-card">
+        <div>
+          <p class="chapter-label">🦊 Capítulo 27</p>
+          <h3>El Zorro de la Montaña</h3>
+          <p>Leer capítulo 27.</p>
+        </div>
+        <a class="cta" href="chapitulos/capitulo-27.html">Abrir</a>
+      </article>
+    
+      <article class="card chapter-card">
+        <div>
+          <p class="chapter-label">♟️ Capítulo 28</p>
+          <h3>El Juego del Poder</h3>
+          <p>Leer capítulo 28.</p>
+        </div>
+        <a class="cta" href="chapitulos/capitulo-28.html">Abrir</a>
+      </article>
+    
+      <article class="card chapter-card">
+        <div>
+          <p class="chapter-label">🏛️ Capítulo 29</p>
+          <h3>El Encuentro en la Mansión Fader</h3>
+          <p>Leer capítulo 29.</p>
+        </div>
+        <a class="cta" href="chapitulos/capitulo-29.html">Abrir</a>
+      </article>
+    
+      <article class="card chapter-card">
+        <div>
+          <p class="chapter-label">🤝 Capítulo 30</p>
+          <h3>El Pacto secreto</h3>
+          <p>Leer capítulo 30.</p>
+        </div>
+        <a class="cta" href="chapitulos/capitulo-30.html">Abrir</a>
+      </article>
+    
+      <article class="card chapter-card">
+        <div>
+          <p class="chapter-label">🕯️ Capítulo 31</p>
+          <h3>La Tertulia del Poder</h3>
+          <p>Leer capítulo 31.</p>
+        </div>
+        <a class="cta" href="chapitulos/capitulo-31.html">Abrir</a>
+      </article>
+    
+      <article class="card chapter-card">
+        <div>
+          <p class="chapter-label">🛡️ Capítulo 32</p>
+          <h3>El Zorro Protector</h3>
+          <p>Leer capítulo 32.</p>
+        </div>
+        <a class="cta" href="chapitulos/capitulo-32.html">Abrir</a>
+      </article>
+    
+      <article class="card chapter-card">
+        <div>
+          <p class="chapter-label">🏙️ Capítulo 33</p>
+          <h3>El juego de poder en Buenos Aires</h3>
+          <p>Leer capítulo 33.</p>
+        </div>
+        <a class="cta" href="chapitulos/capitulo-33.html">Abrir</a>
+      </article>
+    
+      <article class="card chapter-card">
+        <div>
+          <p class="chapter-label">🎓 Capítulo 34</p>
+          <h3>La traición en la facultad</h3>
+          <p>Leer capítulo 34.</p>
+        </div>
+        <a class="cta" href="chapitulos/capitulo-34.html">Abrir</a>
+      </article>
+    
+      <article class="card chapter-card">
+        <div>
+          <p class="chapter-label">📰 Capítulo 35</p>
+          <h3>Las Uvas Mágicas y las Noticias del Día</h3>
+          <p>Leer capítulo 35.</p>
+        </div>
+        <a class="cta" href="chapitulos/capitulo-35.html">Abrir</a>
+      </article>
+    
+      <article class="card chapter-card">
+        <div>
+          <p class="chapter-label">🧠 Capítulo 36</p>
+          <h3>Las teorías de conspiración</h3>
+          <p>Leer capítulo 36.</p>
+        </div>
+        <a class="cta" href="chapitulos/capitulo-36.html">Abrir</a>
+      </article>
+    
+      <article class="card chapter-card">
+        <div>
+          <p class="chapter-label">🖼️ Capítulo 37</p>
+          <h3>El secreto en los cuadros de Fader</h3>
+          <p>Leer capítulo 37.</p>
+        </div>
+        <a class="cta" href="chapitulos/capitulo-37.html">Abrir</a>
+      </article>
+    
+      <article class="card chapter-card">
+        <div>
+          <p class="chapter-label">🤐 Capítulo 38</p>
+          <h3>La confesión de Adolfo</h3>
+          <p>Leer capítulo 38.</p>
+        </div>
+        <a class="cta" href="chapitulos/capitulo-38.html">Abrir</a>
+      </article>
+    
+      <article class="card chapter-card">
+        <div>
+          <p class="chapter-label">🤍 Capítulo 39</p>
+          <h3>La Vía Blanca</h3>
+          <p>Leer capítulo 39.</p>
+        </div>
+        <a class="cta" href="chapitulos/capitulo-39.html">Abrir</a>
+      </article>
+    
+      <article class="card chapter-card">
+        <div>
+          <p class="chapter-label">⛪ Capítulo 40</p>
+          <h3>La reunión en la Catedral del Challao</h3>
+          <p>Leer capítulo 40.</p>
+        </div>
+        <a class="cta" href="chapitulos/capitulo-40.html">Abrir</a>
+      </article>
+    
+      <article class="card chapter-card">
+        <div>
+          <p class="chapter-label">🌃 Capítulo 41</p>
+          <h3>La Noche en el Centro y el Encuentro con el Pasado</h3>
+          <p>Leer capítulo 41.</p>
+        </div>
+        <a class="cta" href="chapitulos/capitulo-41.html">Abrir</a>
+      </article>
+    
+      <article class="card chapter-card">
+        <div>
+          <p class="chapter-label">🪞 Capítulo 42</p>
+          <h3>La Plaza de los recuerdos</h3>
+          <p>Leer capítulo 42.</p>
+        </div>
+        <a class="cta" href="chapitulos/capitulo-42.html">Abrir</a>
+      </article>
+    
+      <article class="card chapter-card">
+        <div>
+          <p class="chapter-label">📜 Capítulo 43</p>
+          <h3>La Explicación de Karl Fader</h3>
+          <p>Leer capítulo 43.</p>
+        </div>
+        <a class="cta" href="chapitulos/capitulo-43.html">Abrir</a>
+      </article>
+    
+      <article class="card chapter-card">
+        <div>
+          <p class="chapter-label">🎠 Capítulo 44</p>
+          <h3>El Carrusel de las Emociones</h3>
+          <p>Leer capítulo 44.</p>
+        </div>
+        <a class="cta" href="chapitulos/capitulo-44.html">Abrir</a>
+      </article>
+    
+      <article class="card chapter-card">
+        <div>
+          <p class="chapter-label">🔺 Capítulo 45</p>
+          <h3>La logia desconocida</h3>
+          <p>Leer capítulo 45.</p>
+        </div>
+        <a class="cta" href="chapitulos/capitulo-45.html">Abrir</a>
+      </article>
+    
+      <article class="card chapter-card">
+        <div>
+          <p class="chapter-label">🚗 Capítulo 46</p>
+          <h3>Luis Fader El conductor</h3>
+          <p>Leer capítulo 46.</p>
+        </div>
+        <a class="cta" href="chapitulos/capitulo-46.html">Abrir</a>
+      </article>
+    
+      <article class="card chapter-card">
+        <div>
+          <p class="chapter-label">🗳️ Capítulo 47</p>
+          <h3>Votación y tensión</h3>
+          <p>Leer capítulo 47.</p>
+        </div>
+        <a class="cta" href="chapitulos/capitulo-47.html">Abrir</a>
+      </article>
+    
+      <article class="card chapter-card">
+        <div>
+          <p class="chapter-label">📚 Capítulo 48</p>
+          <h3>La Revancha de la Historia</h3>
+          <p>Leer capítulo 48.</p>
+        </div>
+        <a class="cta" href="chapitulos/capitulo-48.html">Abrir</a>
+      </article>
+    
+      <article class="card chapter-card">
+        <div>
+          <p class="chapter-label">🎭 Capítulo 49</p>
+          <h3>La Batalla en el Anfiteatro</h3>
+          <p>Leer capítulo 49.</p>
+        </div>
+        <a class="cta" href="chapitulos/capitulo-49.html">Abrir</a>
+      </article>
+    
+      <article class="card chapter-card">
+        <div>
+          <p class="chapter-label">♾️ Capítulo 50</p>
+          <h3>Luis el inmortal</h3>
+          <p>Leer capítulo 50.</p>
+        </div>
+        <a class="cta" href="chapitulos/capitulo-50.html">Abrir</a>
+      </article>
+    
+      <article class="card chapter-card">
+        <div>
+          <p class="chapter-label">🌱 Capítulo 51</p>
+          <h3>El final de una era y el comienzo de una nueva</h3>
+          <p>Leer capítulo 51.</p>
+        </div>
+        <a class="cta" href="chapitulos/capitulo-51.html">Abrir</a>
+      </article>
+    
+      <article class="card chapter-card">
+        <div>
+          <p class="chapter-label">🌟 Capítulo final</p>
+          <h3>Capítulo final</h3>
+          <p>Abrir capítulo.</p>
+        </div>
+        <a class="cta" href="chapitulos/capitulo-final.html">Abrir</a>
+      </article>
+    
+        </div>
       </div>
-    </div>
-    <div class="player__controls">
-      <button id="prevBtn" class="btn btn--icon" aria-label="Anterior">⟨⟨</button>
-      <button id="playBtn" class="btn btn--play" aria-label="Play">▶</button>
-      <button id="nextBtn" class="btn btn--icon" aria-label="Siguiente">⟩⟩</button>
-    </div>
-    <div class="player__progress">
-      <span id="currentTime">0:00</span>
-      <input id="progressBar" type="range" min="0" max="100" value="0" step="0.1">
-      <span id="durationTime">0:00</span>
-    </div>
-    <div class="player__volume">
-      <label for="volumeBar">Volumen</label>
-      <input id="volumeBar" type="range" min="0" max="1" value="0.9" step="0.01">
-      <button id="muteBtn" class="btn btn--icon" aria-label="Silencio">🔊</button>
+    </section>
+
+    <section class="section" id="publicacion">
+      <div class="container card hero-copy">
+        <h2>Cómo publicarlo en GitHub</h2>
+        <p>Sube esta carpeta a un repositorio y activa GitHub Pages desde la configuración del repositorio. Como es un sitio estático, debería funcionar sin cambios.</p>
+        <p>Cuando quieras añadir tus imágenes definitivas, reemplaza los archivos dentro de <strong>img/chapters/</strong> por imágenes con el mismo nombre.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <p>Sitio generado a partir del material base de la novela. Hecho para una publicación simple, legible y lista para personalizar.</p>
     </div>
   </footer>
-
-  <audio id="audio" preload="metadata" crossorigin="anonymous"></audio>
-
-  <script src="js/tracks.js"></script>
-  <script src="js/app.js"></script>
+  <script src="global-player.js"></script>
 </body>
 </html>
